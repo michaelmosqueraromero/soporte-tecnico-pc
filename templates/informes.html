@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Informes{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Panel de Informes</h2>
+
+<div class="row">
+    <!-- Informe de clientes -->
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Clientes</div>
+            <div class="card-body">
+                <p>Total de clientes: <strong>{{ total_clientes }}</strong></p>
+                <ul class="list-group">
+                    {% for cliente in clientes_top %}
+                        <li class="list-group-item">
+                            {{ cliente['nombres'] }} {{ cliente['apellidos'] }} - {{ cliente['total_equipos'] }} equipos
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informe de equipos -->
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">Equipos</div>
+            <div class="card-body">
+                <p>Total de equipos: <strong>{{ total_equipos }}</strong></p>
+                <ul class="list-group">
+                    {% for equipo in equipos_recientes %}
+                        <li class="list-group-item">
+                            {{ equipo['marca'] }} {{ equipo['modelo'] }} - Cliente: {{ equipo['nombres'] }} {{ equipo['apellidos'] }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔹 Botón de impresión -->
+<div class="mt-4">
+    <button onclick="window.print()" class="btn btn-info">Imprimir Informe</button>
+    <a href="/" class="btn btn-secondary">Volver al Panel Principal</a>
+</div>
+{% endblock %}

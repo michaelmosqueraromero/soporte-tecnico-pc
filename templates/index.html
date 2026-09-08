@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Panel Principal{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h2>Bienvenido, {{ usuario }}</h2>
+
+    <!-- Inventario -->
+    <div class="mt-4">
+        <h3>Inventario</h3>
+        <p>Gestiona tus productos y movimientos desde aquí:</p>
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="/productos" class="btn btn-success btn-lg">📦 Productos</a>
+            <a href="/movimientos" class="btn btn-primary btn-lg">🔄 Movimientos</a>
+        </div>
+    </div>
+
+    <!-- Resumen rápido -->
+    <div class="mt-5">
+        <h4>Resumen de Inventario</h4>
+        <p>Total de productos registrados: <strong>{{ total_productos }}</strong></p>
+        <h5>Productos con stock bajo</h5>
+        <ul>
+            {% for prod in productos_bajos %}
+            <li>{{ prod['nombre'] }} → Stock: {{ prod['stock'] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Botones principales -->
+    <h2 class="mb-4 mt-5">Panel Principal</h2>
+    <div class="d-flex justify-content-center gap-3">
+        <a href="/clientes" class="btn btn-primary btn-lg">Clientes</a>
+        <a href="/equipos" class="btn btn-success btn-lg">Equipos</a>
+        <a href="/informes" class="btn btn-warning btn-lg">Informes</a>
+    </div>
+</div>
+{% endblock %}

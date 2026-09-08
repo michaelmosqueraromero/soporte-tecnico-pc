@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Movimientos de Inventario{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Registro de Movimientos</h2>
+
+<!-- Formulario de movimientos -->
+<form method="POST" action="/movimientos" class="mb-4">
+    <div class="mb-3">
+        <label for="id_producto" class="form-label">Producto</label>
+        <select name="id_producto" id="id_producto" class="form-select" required>
+            {% for producto in productos %}
+            <option value="{{ producto['id_producto'] }}">{{ producto['nombre'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo de movimiento</label>
+        <select name="tipo" id="tipo" class="form-select" required>
+            <option value="entrada">Entrada</option>
+            <option value="salida">Salida</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="number" name="cantidad" id="cantidad" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <textarea name="observaciones" id="observaciones" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar Movimiento</button>
+</form>
+
+<!-- Lista de movimientos -->
+<h3 class="mb-4">Historial de Movimientos</h3>
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Fecha</th>
+            <th>Observaciones</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mov in registros %}
+        <tr>
+            <td>{{ mov['id_movimiento'] }}</td>
+            <td>{{ mov['nombre'] }}</td>
+            <td>{{ mov['tipo'] }}</td>
+            <td>{{ mov['cantidad'] }}</td>
+            <td>{{ mov['fecha'] }}</td>
+            <td>{{ mov['observaciones'] }}</td>
+            <td>
+                <div class="d-flex gap-2">
+                    <a href="/movimientos/editar/{{ mov['id_movimiento'] }}" class="btn btn-sm btn-primary">Editar</a>
+                    <!-- OJO RETIRE UN FORM DE ELIMINAR NO FUE NECESARIO POR LOGICA DE PROGRAMACION-->
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

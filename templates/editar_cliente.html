@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Cliente{% endblock %}
+
+{% block content %}
+<h1>Editar Cliente</h1>
+<form method="POST">
+    <input type="text" name="nombres" value="{{ cliente['nombres'] }}" required>
+    <input type="text" name="apellidos" value="{{ cliente['apellidos'] }}" required>
+    <input type="text" name="cedula" value="{{ cliente['cedula'] }}" required>
+    <input type="text" name="telefono_fijo" value="{{ cliente['telefono_fijo'] }}">
+    <input type="text" name="telefono_celular" value="{{ cliente['telefono_celular'] }}">
+    <button type="submit">Guardar cambios</button>
+</form>
+
+<a href="/clientes">Volver a clientes</a>
+{% endblock %}

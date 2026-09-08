@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Equipos{% endblock %}
+
+{% block content %}
+<h1>Registro de Equipos</h1>
+
+<form method="POST" action="/equipos">
+    <label>Cliente:</label>
+    <select name="id_cliente" required>
+        {% for cliente in clientes %}
+            <option value="{{ cliente['id_cliente'] }}">
+                {{ cliente['nombres'] }} {{ cliente['apellidos'] }}
+            </option>
+        {% endfor %}
+    </select><br>
+
+    <input type="text" name="marca" placeholder="Marca" required><br>
+    <input type="text" name="modelo" placeholder="Modelo" required><br>
+    <input type="text" name="serie" placeholder="Serie"><br>
+    <textarea name="observaciones" placeholder="Observaciones"></textarea><br>
+    <input type="text" name="accesorios" placeholder="Accesorios"><br>
+    <button type="submit">Guardar</button>
+</form>
+
+<h2 class="mb-3">Lista de Equipos</h2>
+
+<div class="accordion" id="equiposAccordion">
+    {% for equipo in registros %}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{ equipo['id_equipo'] }}">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{ equipo['id_equipo'] }}"
+                    aria-expanded="false"
+                    aria-controls="collapse{{ equipo['id_equipo'] }}">
+                {{ equipo['marca'] }} {{ equipo['modelo'] }} (Serie: {{ equipo['serie'] }})
+                - Cliente: {{ equipo['nombres'] }} {{ equipo['apellidos'] }}
+            </button>
+        </h2>
+        <div id="collapse{{ equipo['id_equipo'] }}"
+             class="accordion-collapse collapse"
+             aria-labelledby="heading{{ equipo['id_equipo'] }}"
+             data-bs-parent="#equiposAccordion">
+            <div class="accordion-body">
+                <p><strong>Observaciones:</strong> {{ equipo['observaciones'] }}</p>
+                <p><strong>Accesorios:</strong> {{ equipo['accesorios'] }}</p>
+
+                <div class="d-flex gap-2">
+                    <a href="/equipos/editar/{{ equipo['id_equipo'] }}" class="btn btn-sm btn-primary">Editar</a>
+                    <form action="/equipos/eliminar/{{ equipo['id_equipo'] }}" method="POST">
+                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<a href="/clientes">Volver a clientes</a>
+<a href="/">Volver al Panel Principal</a>
+{% endblock %}

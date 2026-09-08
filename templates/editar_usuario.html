@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Usuario{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Editar Usuario</h2>
+
+<form method="POST" action="/usuarios/editar/{{ usuario['id_usuario'] }}">
+    <div class="mb-3">
+        <label for="nombre_usuario" class="form-label">Nombre de usuario</label>
+        <input type="text" name="nombre_usuario" id="nombre_usuario"
+               class="form-control" value="{{ usuario['nombre_usuario'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="rol" class="form-label">Rol</label>
+        <select name="rol" id="rol" class="form-select">
+            <option value="admin" {% if usuario['rol'] == 'admin' %}selected{% endif %}>Admin</option>
+            <option value="recepcion" {% if usuario['rol'] == 'recepcion' %}selected{% endif %}>Recepción</option>
+            <option value="tecnico" {% if usuario['rol'] == 'tecnico' %}selected{% endif %}>Técnico</option>
+        </select>
+    </div>
+
+    {% if usuario['rol'] == 'admin' %}
+    <div class="mb-3">
+        <label for="password" class="form-label">Nueva contraseña</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Opcional">
+        <small class="form-text text-muted">Solo los administradores pueden cambiar la clave.</small>
+    </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a href="/usuarios" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

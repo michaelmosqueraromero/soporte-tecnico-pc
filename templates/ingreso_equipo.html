@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ingreso de Equipo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .documento {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            width: 600px;
+            margin: auto;
+            background: #f9f9f9;
+        }
+        h2 { text-align: center; color: #2c3e50; }
+        p { margin: 8px 0; }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <div class="documento">
+        <h2>Ingreso de Equipo</h2>
+        <p><strong>Cliente:</strong> {{ equipo['nombres'] }} {{ equipo['apellidos'] }}</p>
+        <p><strong>Marca:</strong> {{ equipo['marca'] }}</p>
+        <p><strong>Modelo:</strong> {{ equipo['modelo'] }}</p>
+        <p><strong>Serie:</strong> {{ equipo['serie'] }}</p>
+        <p><strong>Observaciones:</strong> {{ equipo['observaciones'] }}</p>
+        <p><strong>Accesorios:</strong> {{ equipo['accesorios'] }}</p>
+
+        <!-- Botón para imprimir -->
+        <button onclick="window.print()" class="btn">Imprimir Documento</button>
+        <a href="/" class="btn">Volver al Panel Principal</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<h2>Editar Movimiento</h2>
+<form method="POST">
+    <label>Producto:</label>
+    <select name="id_producto" required>
+        {% for producto in productos %}
+            <option value="{{ producto['id_producto'] }}"
+                {% if producto['id_producto'] == movimiento['id_producto'] %}selected{% endif %}>
+                {{ producto['nombre'] }}
+            </option>
+        {% endfor %}
+    </select><br>
+
+    <label>Tipo de movimiento:</label>
+    <select name="tipo" required>
+        <option value="entrada" {% if movimiento['tipo'] == 'entrada' %}selected{% endif %}>Entrada</option>
+        <option value="salida" {% if movimiento['tipo'] == 'salida' %}selected{% endif %}>Salida</option>
+    </select><br>
+
+    <label>Cantidad:</label>
+    <input type="number" name="cantidad" value="{{ movimiento['cantidad'] }}" required><br>
+
+    <label>Observaciones:</label>
+    <textarea name="observaciones">{{ movimiento['observaciones'] }}</textarea><br>
+
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+</form>

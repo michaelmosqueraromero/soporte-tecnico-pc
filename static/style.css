@@ -1,0 +1,155 @@
+/* Importación de la tipografía oficial de Google */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Variables de diseño de Google */
+:root {
+    --google-blue: #1a73e8;
+    --google-blue-hover: #1557b0;
+    --google-bg: #f8f9fa;
+    --google-card-bg: #ffffff;
+    --google-text-primary: #202124;
+    --google-text-secondary: #5f6368;
+    --google-border: #dadce0;
+    --google-shadow: 0 1px 3px rgba(60,64,67,0.12), 0 1px 2px rgba(60,64,67,0.24);
+}
+
+/* Estilo general */
+body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    background-color: var(--google-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--google-text-primary);
+    line-height: 1.5;
+}
+
+/* Encabezado superior minimalista (Estilo Google Workspace) */
+header {
+    background-color: #ffffff;
+    color: var(--google-text-primary);
+    padding: 16px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--google-border);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--google-text-primary);
+}
+
+nav {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+nav a {
+    color: var(--google-text-secondary);
+    text-decoration: none;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 20px; /* Píldoras de navegación tipo Google */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover {
+    background-color: #f1f3f4;
+    color: var(--google-blue);
+    text-decoration: none;
+}
+
+/* Contenido principal centrado */
+main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+/* Formularios estilo Tarjetas de Google */
+form {
+    background: var(--google-card-bg);
+    padding: 24px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border: 1px solid var(--google-border);
+    box-shadow: 0 1px 2px rgba(60,64,67,0.05);
+}
+
+form input, form select, form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border: 1px solid var(--google-border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--google-text-primary);
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Resalte azul al seleccionar un campo */
+form input:focus, form select:focus, form textarea:focus {
+    outline: none;
+    border-color: var(--google-blue);
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* Botón estilo Google Blue */
+form button {
+    display: block;
+    width: 100%;
+    background-color: var(--google-blue);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 2px rgba(60,64,67,0.3);
+}
+
+form button:hover {
+    background-color: var(--google-blue-hover);
+    box-shadow: var(--google-shadow);
+}
+
+/* Listas tipo filas de Google Drive/Búsqueda */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: var(--google-card-bg);
+    margin-bottom: 10px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--google-border);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+ul li:hover {
+    border-color: #bdc1c6;
+    box-shadow: var(--google-shadow);
+}
+
+/* Pie de página tipo Google Search */
+footer {
+    background-color: #f2f2f2;
+    color: var(--google-text-secondary);
+    text-align: center;
+    padding: 16px;
+    font-size: 0.85rem;
+    border-top: 1px solid var(--google-border);
+    margin-top: 40px;
+}

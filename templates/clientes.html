@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<a href="/equipos">Ir a registro de equipos</a>
+<a href="/">Volver al Panel Principal</a>
+<h1>Registro de Clientes</h1>
+
+<form method="POST" action="/clientes">
+    <input type="text" name="nombres" placeholder="Nombres" required><br>
+    <input type="text" name="apellidos" placeholder="Apellidos" required><br>
+    <input type="text" name="cedula" placeholder="Cédula" required><br>
+    <input type="text" name="telefono_fijo" placeholder="Teléfono fijo"><br>
+    <input type="text" name="telefono_celular" placeholder="Teléfono celular"><br>
+    <button type="submit">Guardar</button>
+</form>
+
+<h2 class="mb-3">Lista de Clientes</h2>
+
+<div class="accordion" id="clientesAccordion">
+    {% for cliente in registros %}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{ cliente['id_cliente'] }}">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{ cliente['id_cliente'] }}"
+                    aria-expanded="false"
+                    aria-controls="collapse{{ cliente['id_cliente'] }}">
+                {{ cliente['nombres'] }} {{ cliente['apellidos'] }} - {{ cliente['cedula'] }}
+            </button>
+        </h2>
+        <div id="collapse{{ cliente['id_cliente'] }}"
+             class="accordion-collapse collapse"
+             aria-labelledby="heading{{ cliente['id_cliente'] }}"
+             data-bs-parent="#clientesAccordion">
+           <div class="accordion-body">
+                <p><strong>Teléfono fijo:</strong> {{ cliente['telefono_fijo'] }}</p>
+                <p><strong>Teléfono celular:</strong> {{ cliente['telefono_celular'] }}</p>
+
+                <div class="d-flex gap-2">
+                    <a href="/clientes/editar/{{ cliente['id_cliente'] }}" class="btn btn-sm btn-primary">Editar</a>
+                    <form action="/clientes/eliminar/{{ cliente['id_cliente'] }}" method="POST">
+                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
